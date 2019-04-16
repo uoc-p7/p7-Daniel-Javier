@@ -4,7 +4,7 @@
 
     </div>
     <div id="footer">
-        <p> &copy; JDA CERVEZAS</p>
+        <p> &copy; RETURN CODE <?=date('Y')?></p>
     </div>
 </body>
 

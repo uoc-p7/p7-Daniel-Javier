@@ -2,9 +2,9 @@
 <html lang="es">
 
 <head>
-    <title>JDA</title>
+    <title>Return Code</title>
     <meta charset="UTF-8">
-    <meta name="JDA" content="WEB JDA">
+    <meta name="Return Code" content="WEB RETURN CODE">
     <LINK REL=StyleSheet HREF="css/estilo.css" TYPE="text/css" MEDIA=screen>
     <!--Bootstrap-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -19,7 +19,7 @@
 
         <!--IMAGEN CORPORATIVA-->
         <div id="cabecera">
-            <a title="Inicio" href="index.html"><img src="images/logotipo.png" alt="logo corporativo" width="80%" height="90%" /></a>
+            <a title="Inicio" href="index.php"><img src="images/logo.png" alt="logo corporativo" width="80%" height="90%" /></a>
         </div>
 
         <!--MENÚ NAVBAR-->
@@ -42,8 +42,8 @@
                         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Administración</a>
                     </li>
                 </ul>
-                <button style="margin-right: 1%" type="button" onclick="location.href = 'login.html'" class="btn btn-success">Inicio sesión</button>
-                <button type="button" onclick="location.href = 'registro.html'" class="btn btn-danger">Registrarse</button>
+                <button style="margin-right: 1%" type="button" onclick="location.href = '?c=Web&a=Login_usuario'" class="btn btn-success">Inicio sesión</button>
+                <button type="button" onclick="location.href = '?c=Web&a=Registrar_usuario'" class="btn btn-danger">Registrarse</button>
             </div>
         </nav>
 
