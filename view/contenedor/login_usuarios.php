@@ -9,10 +9,10 @@
     
     <div class="form-group">
         <label>Password</label>
-        <input type="password" name="nombre" value="<?php echo $user->password; ?>" class="form-control" placeholder="Ingrese su password" data-validacion-tipo="requerido|min:3" />
+        <input type="password" name="password" value="<?php echo $user->password; ?>" class="form-control" placeholder="Ingrese su password" data-validacion-tipo="requerido|min:3" />
     </div>
 
     <div class="text-center">
-        <button class="btn btn-success">Guardar</button>
+        <button class="btn btn-success">Acceder</button>
     </div>
 </form>

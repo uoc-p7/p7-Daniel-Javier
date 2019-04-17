@@ -55,6 +55,17 @@ class WebControlador{
         echo "Usuario registrado con exito, <a href='index.php'>volver</a>";
 	}
 
+	public function Iniciar_sesion(){
+		
+		$user = new Usuario();
+		
+		$user->username = $_REQUEST['username'];
+		$user->password = $_REQUEST['password'];
+		
+		$this->usuario->Validar($user);
+
+	}
+
 }
 
 ?>

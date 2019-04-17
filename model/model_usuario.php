@@ -12,6 +12,7 @@ class Usuario{
 	public $nombre;
 	public $password;
 	public $email;
+	public $sesion;
 	
 	public function __CONSTRUCT(){
 		try{
@@ -45,6 +46,28 @@ class Usuario{
 			die($e->getMessage());
 		}
 	}
+
+	public function Validar($user){
+		
+		$sql = "SELECT username FROM usuarios WHERE username = :username AND password = :password ;"; 
+		$result = $this->pdo->prepare($sql); 
+		$result->bindValue	(':username', $user->username, PDO::PARAM_STR);
+		$result->bindValue(':password', $user->password, PDO::PARAM_STR);
+		$result->execute(); 
+		$count = $result->rowCount();
+		$data=$result->fetch(PDO::FETCH_OBJ);
+		
+		if($count){
+			$_SESSION['username']=$data->username;
+			$sesion=$_SESSION['username'];
+			echo "Login perfecto.<br>";
+			echo "Nombre del user: ".$sesion;
+
+		}else{
+			echo "Usuario no registrado.";  
+		} 
+	}
+
 	
 }
 
