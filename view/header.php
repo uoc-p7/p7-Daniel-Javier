@@ -1,4 +1,4 @@
-<?php session_start(); ?>
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -51,6 +51,7 @@
 
         <!--CUERPO CONTENEDOR-->
         <div id="cuerpo">
+
             
             
             

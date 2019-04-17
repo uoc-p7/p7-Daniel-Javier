@@ -1,5 +1,8 @@
 <?php
 
+require_once 'controller/web.controlador.php';
+session_start();
+
 $controller = 'web';
 
 // Si no tenemos declarada la variable c iniciamos el Index
@@ -22,3 +25,5 @@ else {
     // Llama la accion
     call_user_func( array( $controller, $accion ) );
 }
+
+?>

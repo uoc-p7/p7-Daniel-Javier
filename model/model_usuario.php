@@ -62,6 +62,7 @@ class Usuario{
 			$sesion=$_SESSION['username'];
 			echo "Login perfecto.<br>";
 			echo "Nombre del user: ".$sesion;
+			header("Location: index.php");
 
 		}else{
 			echo "Usuario no registrado.";  
