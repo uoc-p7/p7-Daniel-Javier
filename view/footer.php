@@ -10,6 +10,8 @@
             <?php
                 if(isset($_SESSION["username"])){
                     echo " Usuario: ".$_SESSION["username"]." <a href='model/cerrar_sesion.php'>Cerrar sesión</a>";
+                }else{
+                    echo " Sesión no iniciada.";
                 }
             ?>
         </p>
