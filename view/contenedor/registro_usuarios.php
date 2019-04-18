@@ -1,6 +1,6 @@
 <h1>REGISTRAR USUARIOS</h1>
 
-<form id="frm-alumno" action="?c=Web&a=Guardar_usuarios" method="post" enctype="multipart/form-data">
+<form id="frm-noticia" action="?c=Web&a=Guardar_usuarios" method="post" enctype="multipart/form-data">
     
     <div class="form-group">
         <label>Nombre de usuario</label>
@@ -34,3 +34,5 @@
         <button class="btn btn-success">Guardar</button>
     </div>
 </form>
+
+

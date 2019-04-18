@@ -1,14 +1,20 @@
 <?php
 
 require_once 'model/model_usuario.php';		
+require_once 'model/model_keywords.php';
+require_once 'model/model_noticias.php';			
 
 class WebControlador{
 	
 	private $usuario;
+	private $noticia;
+	private $keyword;
 
 	public function __CONSTRUCT(){
 		
 		$this->usuario= new Usuario();
+		$this->keyword= new Keywords();
+		$this->noticia= new Noticias();
 
     }
     
@@ -39,6 +45,29 @@ class WebControlador{
 
 	}
 
+	public function Anadir_noticia(){
+
+		$notice= new Noticias();
+		$kw= new Keywords();
+		
+		require_once 'view/header.php';
+		require_once 'view/contenedor/vista_add_noticias.php';
+		require_once 'view/footer.php';
+
+	}
+
+	
+	public function Iniciar_sesion(){
+		
+		$user = new Usuario();
+		
+		$user->username = $_REQUEST['username'];
+		$user->password = $_REQUEST['password'];
+		
+		$this->usuario->Validar($user);
+
+	}
+
 	public function Guardar_usuarios(){
 
 
@@ -55,17 +84,47 @@ class WebControlador{
         echo "Usuario registrado con exito, <a href='index.php'>volver</a>";
 	}
 
-	public function Iniciar_sesion(){
-		
-		$user = new Usuario();
-		
-		$user->username = $_REQUEST['username'];
-		$user->password = $_REQUEST['password'];
-		
-		$this->usuario->Validar($user);
 
+
+	//Controller para las kw
+
+	public function Guardar_keyword(){
+
+		$kw= new Keywords();
+
+		$kw->keyword_texto = $_REQUEST['keyword_texto'];
+
+		$this->keyword->insertarKw($kw);
 	}
+
+
+	//Controller para las noticias
+
+	public function Guardar_noticia(){
+
+		$notice= new Noticias();
+		$kw= new Keywords();				
+		$fecha_actual = date("Y-m-d");
+
+		$notice->usuario_periodista = $_SESSION['username'];
+		$notice->usuario_editor= '';
+		$notice->categoria_id = $_REQUEST['categoria_id']; ;
+		$notice->noticia_titulo = $_REQUEST['noticia_titulo'];
+		$notice->noticia_subtitulo = $_REQUEST['noticia_subtitulo'];
+		$notice->noticia_texto = $_REQUEST['noticia_texto'];
+		$notice->noticia_imagen = '';
+		$notice->fecha_creacion = $fecha_actual;		
+		$kw->keyword_texto = $_REQUEST['keyword_texto'];
+
+		$this->noticia->insertaNoticiaPeriodista($notice);
+		$this->keyword->insertarKw($kw);
+
+		echo "Noticia añadida con éxito, <a href='index.php'>volver</a>";
+	}
+
 
 }
 
 ?>
+
+
