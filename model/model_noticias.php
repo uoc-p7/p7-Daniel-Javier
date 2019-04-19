@@ -38,6 +38,8 @@ require_once 'model/model_keywords.php';
                 
                 $sql = "INSERT INTO noticias (usuario_periodista,usuario_editor,categoria_id,noticia_titulo,noticia_subtitulo,noticia_texto,noticia_imagen,fecha_creacion) 
                 VALUES (?,?,?,?,?,?,?,?)";
+
+                $this->pdo->beginTransaction();
                         
                 $this->pdo->prepare($sql)
                     ->execute(
@@ -52,7 +54,11 @@ require_once 'model/model_keywords.php';
                             $data->fecha_creacion
                         )
                     );
+                $this->pdo->commit();
+                
                 } catch (Exception $e) {
+
+                    $this->pdo->rollBack();
     
                     echo "Error creando noticia<br>";
                     die($e->getMessage());
