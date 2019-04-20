@@ -1,6 +1,6 @@
 <h1>AÑADIR NOTICIAS</h1>
 
-<form id="frm-noticia" action="?c=Web&a=Guardar_noticia" method="post" enctype="multipart/form-data">
+<form id="frm-noticia" action="?c=Web&a=Guardar_noticia" method="post" enctype="multipart/form-data" >
     
     
 <div class="form-group">
@@ -31,6 +31,10 @@
     </div>
 
 
+    <div class="form-group">
+    <label>Imagen (Opcional)</label>
+        <input type="file" name="noticia_imagen" value="<?php echo $kw->noticia_imagen; ?>" class="form-control" />
+    </div>
 
     <div class="form-group" >
     <label for="texto_noticia">Texto de la noticia</label>

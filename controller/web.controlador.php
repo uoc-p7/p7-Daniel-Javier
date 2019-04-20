@@ -49,7 +49,7 @@ class WebControlador{
 
 		$notice= new Noticias();
 		$kw= new Keywords();
-		
+			
 		require_once 'view/header.php';
 		require_once 'view/contenedor/vista_add_noticias.php';
 		require_once 'view/footer.php';
@@ -105,18 +105,30 @@ class WebControlador{
 		$notice= new Noticias();
 		$kw= new Keywords();				
 		$fecha_actual = date("Y-m-d");
+		
+		if ($_FILES['noticia_imagen']['size'] <> FALSE )
+		{
+			$image = addslashes(file_get_contents($_FILES['noticia_imagen']['tmp_name']));
+			$notice->noticia_imagen = $image;
+		}
+
+		else
+		{
+			$notice->noticia_imagen = '';
+		}
 
 		$notice->usuario_periodista = $_SESSION['username'];
-		$notice->usuario_editor= '';
+		$notice->usuario_editor= 'Pendiente';
 		$notice->categoria_id = $_REQUEST['categoria_id']; ;
 		$notice->noticia_titulo = $_REQUEST['noticia_titulo'];
 		$notice->noticia_subtitulo = $_REQUEST['noticia_subtitulo'];
-		$notice->noticia_texto = $_REQUEST['noticia_texto'];
-		$notice->noticia_imagen = '';
-		$notice->fecha_creacion = $fecha_actual;		
+		$notice->noticia_texto = $_REQUEST['noticia_texto'];		
+		$notice->fecha_creacion = $fecha_actual;
+				
 		$kw->keyword_texto = $_REQUEST['keyword_texto'];
 
-		$this->noticia->insertaNoticiaPeriodista($notice);
+
+		$this->noticia->insertaNoticiaPeriodista($notice);		
 		$this->keyword->insertarKw($kw);
 
 		echo "Noticia añadida con éxito, <a href='index.php'>volver</a>";
@@ -126,5 +138,4 @@ class WebControlador{
 }
 
 ?>
-
 

@@ -34,6 +34,8 @@ require_once 'model/model_keywords.php';
         public function insertaNoticiaPeriodista (Noticias $data){
 
             try {
+
+                
     
                 
                 $sql = "INSERT INTO noticias (usuario_periodista,usuario_editor,categoria_id,noticia_titulo,noticia_subtitulo,noticia_texto,noticia_imagen,fecha_creacion) 

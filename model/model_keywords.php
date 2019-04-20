@@ -22,9 +22,8 @@ require_once 'model/conexion.php';
     public function insertarKw (Keywords $data){
 
         try {
-
             
-            $sql = "INSERT INTO keywords (keyword_texto) VALUES (?)";
+            $sql = "INSERT INTO keywords (keyword_texto) VALUES (?);";
                     
             $this->pdo->prepare($sql)
                 ->execute(
@@ -38,9 +37,6 @@ require_once 'model/conexion.php';
                 die($e->getMessage());
             }
     }
-
-
-
 }
 
 
