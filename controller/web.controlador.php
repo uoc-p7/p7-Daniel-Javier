@@ -46,7 +46,6 @@ class WebControlador{
 	}
 
 	public function Anadir_noticia(){
-
 		$notice= new Noticias();
 		$kw= new Keywords();
 		
@@ -56,10 +55,16 @@ class WebControlador{
 			require_once 'view/contenedor/vista_add_noticias.php';
 			require_once 'view/footer.php';
 		}
-		else {
-			echo "Necesitas tener rol periodista para acceder.";
+
+		elseif ($_SESSION["roles_descripcion"] == 'Editor' ) {		
+			
+			echo "Necesitas tener rol Periodista para acceder a esta página";
 		}
 
+		
+		else {
+			header("Location: index.php?c=Web&a=Login_usuario");
+		}
 	}
 
 	
