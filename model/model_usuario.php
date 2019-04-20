@@ -49,7 +49,11 @@ class Usuario{
 
 	public function Validar($user){
 		
-		$sql = "SELECT username FROM usuarios WHERE username = :username AND password = :password ;"; 
+		$sql = "SELECT a.username, b.roles_descripcion as roles_descripcion
+		FROM usuarios a 
+		INNER JOIN roles b where 
+		(a.username = :username  AND a.password = :password) and a.roles_id = b.roles_id ;"; 
+
 		$result = $this->pdo->prepare($sql); 
 		$result->bindValue	(':username', $user->username, PDO::PARAM_STR);
 		$result->bindValue(':password', $user->password, PDO::PARAM_STR);
@@ -60,10 +64,14 @@ class Usuario{
 		if($count){
 			$_SESSION['username']=$data->username;
 			$sesion=$_SESSION['username'];
+
+			$_SESSION['roles_descripcion']=$data->roles_descripcion;
+			$sesionrol=$_SESSION['roles_descripcion'];
+
 			echo "Login perfecto.<br>";
 			echo "Nombre del user: ".$sesion;
-			header("Location: index.php");
 
+			header("Location: index.php");
 		}else{
 			echo "Usuario no registrado.";  
 		} 

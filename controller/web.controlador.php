@@ -49,10 +49,16 @@ class WebControlador{
 
 		$notice= new Noticias();
 		$kw= new Keywords();
+		
+		if ($_SESSION["roles_descripcion"] == 'Periodista' ) {		
 			
-		require_once 'view/header.php';
-		require_once 'view/contenedor/vista_add_noticias.php';
-		require_once 'view/footer.php';
+			require_once 'view/header.php';
+			require_once 'view/contenedor/vista_add_noticias.php';
+			require_once 'view/footer.php';
+		}
+		else {
+			echo "Necesitas tener rol periodista para acceder.";
+		}
 
 	}
 
