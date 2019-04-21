@@ -116,17 +116,13 @@ class WebControlador{
 		$notice= new Noticias();
 		$kw= new Keywords();				
 		$fecha_actual = date("Y-m-d");
-		
-		if ($_FILES['noticia_imagen']['size'] <> FALSE )
-		{
-			$image = addslashes(file_get_contents($_FILES['noticia_imagen']['tmp_name']));
-			$notice->noticia_imagen = $image;
-		}
 
-		else
-		{
-			$notice->noticia_imagen = '';
-		}
+		//para la carga de la imagen
+		$foto = $_FILES['ruta_imagen']['name'];
+		$ruta = $_FILES['ruta_imagen']['tmp_name'];
+		$destino = "images/".$foto;
+		copy($ruta,$destino);	
+
 
 		$notice->usuario_periodista = $_SESSION['username'];
 		$notice->usuario_editor= 'Pendiente';
@@ -135,7 +131,7 @@ class WebControlador{
 		$notice->noticia_subtitulo = $_REQUEST['noticia_subtitulo'];
 		$notice->noticia_texto = $_REQUEST['noticia_texto'];		
 		$notice->fecha_creacion = $fecha_actual;
-				
+		$notice->ruta_imagen = $destino;		
 		$kw->keyword_texto = $_REQUEST['keyword_texto'];
 
 

@@ -35,7 +35,7 @@ require_once 'model/model_keywords.php';
 
             try {            
                     
-                $sql = "INSERT INTO noticias (usuario_periodista,usuario_editor,categoria_id,noticia_titulo,noticia_subtitulo,noticia_texto,noticia_imagen,fecha_creacion) 
+                $sql = "INSERT INTO noticias (usuario_periodista,usuario_editor,categoria_id,noticia_titulo,noticia_subtitulo,noticia_texto,ruta_imagen,fecha_creacion) 
                 VALUES (?,?,?,?,?,?,?,?)";
 
                 $this->pdo->beginTransaction();
@@ -49,8 +49,9 @@ require_once 'model/model_keywords.php';
                             $data->noticia_titulo,
                             $data->noticia_subtitulo,
                             $data->noticia_texto,
-                            $data->noticia_imagen,
+                            $data->ruta_imagen,
                             $data->fecha_creacion
+                            
                         )
                     );
                 $this->pdo->commit();

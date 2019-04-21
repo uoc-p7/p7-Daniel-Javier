@@ -33,7 +33,7 @@
 
     <div class="form-group">
     <label>Imagen (Opcional)</label>
-        <input type="file" name="noticia_imagen" value="<?php echo $kw->noticia_imagen; ?>" class="form-control" />
+        <input type="file" id = "ruta_imagen" name="ruta_imagen" accept="image/png, image/jpeg" value="<?php echo $kw->ruta_imagen; ?>" class="form-control" />
     </div>
 
     <div class="form-group" >

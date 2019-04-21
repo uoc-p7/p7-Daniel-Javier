@@ -19,8 +19,8 @@ require_once 'model/conexion.php';
         }
     }
 
+    
     public function insertarKw (Keywords $data){
-
         try {
             
             $sql = "INSERT INTO keywords (keyword_texto) VALUES (?);";
@@ -32,20 +32,16 @@ require_once 'model/conexion.php';
                     )
                 );
             } catch (Exception $e) {
-
                 echo "Error<br>";
                 die($e->getMessage());
             }
     }
+    
+    
+    
+
 }
 
 
-
-
 ?>
-
-
-
-
-
 
