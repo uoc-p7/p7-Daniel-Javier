@@ -18,6 +18,7 @@ require_once 'model/model_keywords.php';
         public $fecha_creacion;
         public $fecha_modificacion;
         public $fecha_publicacion; 
+        public $ruta_imagen;
     
 
         public function __CONSTRUCT(){
@@ -64,7 +65,79 @@ require_once 'model/model_keywords.php';
                     die($e->getMessage());
                 }
         }
-    }
+
+        //Listado de noticias pendientes
+
+        public function Listarpendientes(){
+
+            try{
+			        $result = array();
+			        $sql = $this->pdo->prepare("SELECT * FROM noticias WHERE usuario_editor='pendiente'");
+			        $sql->execute();
+			        return $sql->fetchAll(PDO::FETCH_OBJ);
+		        }catch(Exception $e){
+                    die($e->getMessage());
+		        }
+
+        }
+
+        //Obtenemos la noticia pendiente seleccionada a través de la noticia_id
+
+        public function Obtener($noticia_id){
+        
+            try{ 
+			        $sql = $this->pdo->prepare("SELECT * FROM noticias WHERE noticia_id = ?");
+			        $sql->execute(array($noticia_id));
+			        return $sql->fetch(PDO::FETCH_OBJ);
+		        } catch (Exception $e) {
+			        die($e->getMessage());
+		        }
+        }
+        
+        public function Modificar_not_pendiente($data){
+
+            try{
+			        $sql = "UPDATE noticias SET 
+						noticia_titulo = ?, 
+						noticia_subtitulo = ?,
+                        noticia_texto = ?,
+                        usuario_editor = ?,
+                        ruta_imagen = ?,
+                        fecha_modificacion = ?
+				    WHERE noticia_id = ?";
+
+			    $this->pdo->prepare($sql)
+			        ->execute(
+				        array(
+                            $data->noticia_titulo, 
+                            $data->noticia_subtitulo,
+                            $data->noticia_texto,
+                            $data->usuario_editor,
+                            $data->ruta_imagen,
+                            $data->fecha_modificacion,
+                            $data->noticia_id
+					    )
+				    );
+		        } catch (Exception $e) {
+			        die($e->getMessage());
+		            }
+        }
+
+        public function Eliminar_noticia($noticia_id){
+
+            try {
+			    $sql = $this->pdo
+			            ->prepare("DELETE FROM noticias WHERE noticia_id = ?");			          
+
+			    $sql->execute(array($noticia_id));
+		    } catch (Exception $e) {
+			    die($e->getMessage());
+		    }
+        }
+
+
+
+}
 
 
 

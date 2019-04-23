@@ -67,6 +67,32 @@ class WebControlador{
 		}
 	}
 
+	//Accedemos a un listado de las noticias pendientes
+
+	public function Editar_noticia(){
+
+		$notice= new Noticias();
+		$kw= new Keywords();
+		
+		if ($_SESSION["roles_descripcion"] == 'Editor' ) {		
+			
+			require_once 'view/header.php';
+			require_once 'view/contenedor/vista_edit_noticias.php';
+			require_once 'view/footer.php';
+		}
+
+		elseif ($_SESSION["roles_descripcion"] == 'Editor' ) {		
+			
+			echo "Necesitas tener rol Editor para acceder a esta página";
+		}
+
+		
+		else {
+			header("Location: index.php?c=Web&a=Login_usuario");
+		}
+	}
+
+
 	
 	public function Iniciar_sesion(){
 		
@@ -140,6 +166,63 @@ class WebControlador{
 
 		echo "Noticia añadida con éxito, <a href='index.php'>volver</a>";
 	}
+
+	//Accedemos a la página donde editamos la noticia seleccionada
+
+	public function Vistaeditarpendiente(){
+
+		$notice= new Noticias();
+
+		if(isset($_REQUEST['noticia_id'])){
+            $notice = $this->noticia->Obtener($_REQUEST['noticia_id']);
+        }
+
+		require_once 'view/header.php';
+		require_once 'view/contenedor/vista_edit_noticias2.php';
+		require_once 'view/footer.php';
+	}
+
+	//Cambiamos los datos de la noticia pendiente
+
+	public function Actualizar_noticia(){
+
+		$notice= new Noticias();
+		$fecha_mod = date("Y-m-d");
+
+
+		//para la carga de la imagen
+		$foto = $_FILES['ruta_imagen']['name'];
+		$ruta = $_FILES['ruta_imagen']['tmp_name'];
+		$destino = "images/".$foto;
+		copy($ruta,$destino);
+
+        $notice->noticia_id = $_REQUEST['noticia_id'];
+        $notice->noticia_titulo = $_REQUEST['noticia_titulo'];
+        $notice->noticia_subtitulo = $_REQUEST['noticia_subtitulo'];
+		$notice->noticia_texto = $_REQUEST['noticia_texto'];
+		$notice->usuario_editor= $_SESSION['username'];
+		$notice->fecha_modificacion = $fecha_mod;
+		$notice->ruta_imagen= $destino;
+
+
+
+        $this->noticia->Modificar_not_pendiente($notice);
+        
+        header('Location: index.php');
+
+
+	}
+
+	//Eliminar noticia.
+
+	public function Eliminarnoticia(){
+
+		$this->noticia->Eliminar_noticia($_REQUEST['noticia_id']);
+        header('Location: index.php');
+
+	}
+
+	
 
 
 }
