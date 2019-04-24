@@ -2,19 +2,22 @@
 
 require_once 'model/model_usuario.php';		
 require_once 'model/model_keywords.php';
-require_once 'model/model_noticias.php';			
+require_once 'model/model_noticias.php';
+require_once 'model/modelo_categorias.php';				
 
 class WebControlador{
 	
 	private $usuario;
 	private $noticia;
 	private $keyword;
+	private $categorias;
 
 	public function __CONSTRUCT(){
 		
 		$this->usuario= new Usuario();
 		$this->keyword= new Keywords();
 		$this->noticia= new Noticias();
+		$this->categorias= new Categorias();
 
     }
     
@@ -221,6 +224,34 @@ class WebControlador{
         header('Location: index.php');
 
 	}
+
+	public function ListarMenuCategorias(){
+		
+		$cat = new Categorias();
+		
+		$this->cat->ListarTipoCategorias();
+	}
+	
+
+	public function VerNoticiasCategorias(){
+
+        $notcatsel = new Noticias();
+  
+
+        
+        if(isset($_REQUEST['categoria_id'])){
+            $notcatsel = $this->noticia->ObtenerNoticiaCategoria($_REQUEST['categoria_id']);           
+            
+        require_once 'view/header.php';
+        require_once 'view/contenedor/vista_categoria_noticias.php';
+        require_once 'view/footer.php';
+ 
+        }
+        else {
+			header("Location: index.php?c=Web&a=Login_usuario");
+		}
+    }
+
 
 	
 

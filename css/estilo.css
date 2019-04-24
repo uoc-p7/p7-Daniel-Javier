@@ -49,3 +49,18 @@
         width: 100%;
         margin: 0px auto;
     }
+    
+    .row {
+        margin-top: 20px !important;
+    }
+    
+    .card {
+        background-color: #FEFFEE !important;
+        height: auto;
+        margin: 10px;
+    }
+    
+    .col-centrada {
+        float: none;
+        margin: 0 auto;
+    }

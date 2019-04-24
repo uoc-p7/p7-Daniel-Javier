@@ -34,11 +34,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href='?c=Web&a=Editar_noticia'>Editar noticia <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Categoría 2 <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Categoría 3 <span class="sr-only">(current)</span></a>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="?c=Web&a=ListarTipoCategorias" id="navbardrop" data-toggle="dropdown">Categorías</a>
+                    <div class="dropdown-menu">
+                        <?php foreach($this->categorias->ListarTipoCategorias() as $r): ?>
+                            <a class="dropdown-item" href="?c=Web&a=VerNoticiasCategorias&categoria_id=<?php echo $r->categoria_id; ?> "><?php echo $r->categoria_texto; ?></a>
+                        <?php endforeach; ?>                  
+                    </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
