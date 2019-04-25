@@ -153,6 +153,58 @@ require_once 'model/model_keywords.php';
             }
         }
 
+        public function Listar_noticias_admin(){
+
+            try{
+                $result = array();
+                $sql = $this->pdo->prepare("SELECT * FROM noticias");
+                $sql->execute();
+                return $sql->fetchAll(PDO::FETCH_OBJ);
+            }catch(Exception $e){
+                die($e->getMessage());
+            }
+    
+        }
+
+        public function Obtener_noticias_admin($noticia_id){
+
+            try{
+                $sql = $this->pdo
+                    ->prepare("SELECT * FROM noticias WHERE noticia_id = ?");         
+                    $sql->execute(array($noticia_id));
+                return $sql->fetch(PDO::FETCH_OBJ);
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
+    
+        }
+
+        public function Actualizar_not_admin($data){
+
+            try{
+                $sql = "UPDATE noticias SET 
+                            noticia_titulo = ?,
+                            noticia_subtitulo = ?,
+                            noticia_texto = ?,
+                            ruta_imagen = ?
+                        WHERE noticia_id = ?";
+    
+                $this->pdo->prepare($sql)
+                     ->execute(
+                        array(
+                            $data->noticia_titulo,
+                            $data->noticia_subtitulo,
+                            $data->noticia_texto,
+                            $data->ruta_imagen,
+                            $data->noticia_id
+    
+                        )
+                    );
+            } catch (Exception $e) {
+                die($e->getMessage());
+            }
+        }
+
 
 
 }

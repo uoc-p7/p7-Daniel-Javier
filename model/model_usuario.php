@@ -77,6 +77,70 @@ class Usuario{
 		} 
 	}
 
+	public function Listar_usuarios(){
+
+		try{
+			$result = array();
+			$sql = $this->pdo->prepare("SELECT * FROM usuarios");
+			$sql->execute();
+			return $sql->fetchAll(PDO::FETCH_OBJ);
+		}catch(Exception $e){
+			die($e->getMessage());
+		}
+
+	}
+
+	public function Obtener_usuario($username){
+
+		try{
+			$sql = $this->pdo
+			    ->prepare("SELECT * FROM usuarios WHERE username = ?");         
+				$sql->execute(array($username));
+			return $sql->fetch(PDO::FETCH_OBJ);
+		} catch (Exception $e) {
+			die($e->getMessage());
+		}
+
+	}
+
+
+	public function Actualizar_usuario($data){
+
+		try{
+			$sql = "UPDATE usuarios SET 
+						roles_id = ?,
+						nombre = ?,
+						password = ?,
+                        email = ?
+				    WHERE username = ?";
+
+			$this->pdo->prepare($sql)
+			     ->execute(
+				    array(
+						$data->roles_id,
+						$data->nombre,
+                        $data->password,
+						$data->email,
+						$data->username
+
+					)
+				);
+		} catch (Exception $e) {
+			die($e->getMessage());
+		}
+
+	}
+
+	public function Eliminar_user($username){
+
+		try{
+			$sql = $this->pdo->prepare("DELETE FROM usuarios WHERE username = ?");			          
+			$sql->execute(array($username));
+		} catch (Exception $e){
+			die($e->getMessage());
+		}
+	}
+
 	
 }
 

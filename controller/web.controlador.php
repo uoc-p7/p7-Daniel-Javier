@@ -250,9 +250,137 @@ class WebControlador{
         else {
 			header("Location: index.php?c=Web&a=Login_usuario");
 		}
+	}
+	
+
+	public function Admin(){
+
+        $user = new Usuario();
+
+        if ($_SESSION["username"] == 'Admin' ) {		
+			
+			require_once 'view/header.php';
+			require_once 'view/contenedor/vista_admin.php';
+			require_once 'view/footer.php';
+		}
+
+		elseif ($_SESSION["username"] == 'Admin' ) {		
+			
+			echo "Necesitas ser Goku o el Administrador de la web para acceder";
+		}
+		
+		else {
+			header("Location: index.php?c=Web&a=Login_usuario");
+		}
+	}
+	
+	public function Administracion_user(){
+
+        $user = new Usuario();
+
+        if ($_SESSION["username"] == 'Admin' ) {		
+			
+			require_once 'view/header.php';
+			require_once 'view/contenedor/vista_administracion_usuarios.php';
+			require_once 'view/footer.php';
+		}
+
+		elseif ($_SESSION["username"] == 'Admin' ) {		
+			
+			echo "Necesitas ser Goku o el Administrador de la web para acceder";
+		}
+
+		
+		else {
+			header("Location: index.php?c=Web&a=Login_usuario");
+		}
     }
 
+	public function Editar_Usuario(){
 
+		$user = new Usuario();
+        
+        if(isset($_REQUEST['username'])){
+            $user = $this->usuario->Obtener_usuario($_REQUEST['username']);
+        }
+        
+        require_once 'view/header.php';
+        require_once 'view/contenedor/vista_editar_usuario.php';
+        require_once 'view/footer.php';
+
+	}
+
+	public function Guardar_Usuario(){
+
+        $user = new Usuario();
+        
+        $user->roles_id = $_REQUEST['roles_id'];
+		$user->nombre = $_REQUEST['nombre'];
+        $user->password = $_REQUEST['password'];
+		$user->email = $_REQUEST['email'];
+		$user->username = $_REQUEST['username'];
+
+
+        $this->usuario->Actualizar_usuario($user);
+        
+        header("Location: index.php?c=Web&a=Admin");
+
+	}
+	
+	public function Eliminar_Usuario(){
+
+        $this->usuario->Eliminar_user($_REQUEST['username']);
+        header("Location: index.php?c=Web&a=Admin");
+
+    }
+
+	public function Administracion_not(){
+
+		$notice= new Noticias();
+        if ($_SESSION["username"] == 'Admin' ) {		
+			
+			require_once 'view/header.php';
+			require_once 'view/contenedor/vista_administracion_noticias.php';
+			require_once 'view/footer.php';
+		}
+
+		elseif ($_SESSION["username"] == 'Admin' ) {		
+			
+			echo "Necesitas ser Goku o el Administrador de la web para acceder";
+		}
+
+		
+		else {
+			header("Location: index.php?c=Web&a=Login_usuario");
+		}
+
+	}
+
+	public function Editar_Noticia_Admin(){
+
+		$notice = new Noticias();
+        
+        if(isset($_REQUEST['noticia_id'])){
+            $notice = $this->noticia->Obtener_noticias_admin($_REQUEST['noticia_id']);
+        }
+        
+        require_once 'view/header.php';
+        require_once 'view/contenedor/vista_editar_noticias_admin.php';
+        require_once 'view/footer.php';
+
+	}
+
+	public function Editar_Noticia_Add(){
+
+		$notice = new Noticias();
+        
+        $notice->noticia_id = $_REQUEST['noticia_id'];
+
+        $this->noticia->Actualizar_not_admin($notice);
+        
+        header("Location: index.php?c=Web&a=Admin");
+
+	}
 	
 
 
