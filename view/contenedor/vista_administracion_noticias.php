@@ -20,7 +20,7 @@
                 <a href="?c=Web&a=Editar_Noticia_Admin&noticia_id=<?php echo $r->noticia_id; ?>">Editar</a>
             </td>
             <td>
-                <a onclick="javascript:return confirm('¿Seguro de eliminar este usuario?');" href="?c=Web&a=Eliminar_Noticia_Admin&noticia_id=<?php echo $r->noticia_id; ?>">Eliminar</a>
+                <a onclick="javascript:return confirm('¿Seguro de eliminar esta noticia?');" href="?c=Web&a=Eliminarnoticia&noticia_id=<?php echo $r->noticia_id; ?>">Eliminar</a>
             </td>
         </tr>
     <?php endforeach; ?>

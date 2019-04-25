@@ -373,15 +373,25 @@ class WebControlador{
 	public function Editar_Noticia_Add(){
 
 		$notice = new Noticias();
+
+		$foto = $_FILES['ruta_imagen']['name'];
+		$ruta = $_FILES['ruta_imagen']['tmp_name'];
+		$destino = "images/".$foto;
+		copy($ruta,$destino);
         
-        $notice->noticia_id = $_REQUEST['noticia_id'];
+
+		$notice->noticia_id = $_REQUEST['noticia_id'];
+        $notice->noticia_titulo = $_REQUEST['noticia_titulo'];
+        $notice->noticia_subtitulo = $_REQUEST['noticia_subtitulo'];
+		$notice->noticia_texto = $_REQUEST['noticia_texto'];
+		$notice->categoria_id= $_REQUEST['categoria_id'];
+		$notice->ruta_imagen= $destino;
 
         $this->noticia->Actualizar_not_admin($notice);
         
         header("Location: index.php?c=Web&a=Admin");
 
 	}
-	
 
 
 }
