@@ -44,14 +44,13 @@
                     </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href = '?c=Web&a=Admin'>Administración<span class="sr-only">(current)</span></a>
                     </li>
                 </ul>
-                <button style="margin-right: 1%" type="button" onclick="location.href = '?c=Web&a=Login_usuario'" class="btn btn-success">Inicio sesión</button>
-                <button type="button" onclick="location.href = '?c=Web&a=Registrar_usuario'" class="btn btn-danger">Registrarse</button>
+                <?php if(empty($_SESSION['username'])){ ?>
+                    <button style="margin-right: 1%" type="button" onclick="location.href = '?c=Web&a=Login_usuario'" class="btn btn-success">Inicio sesión</button>
+                    <button type="button" onclick="location.href = '?c=Web&a=Registrar_usuario'" class="btn btn-danger">Registrarse</button>
+                <?php } ?>
             </div>
         </nav>
 

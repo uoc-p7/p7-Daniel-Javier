@@ -61,7 +61,7 @@ class WebControlador{
 
 		elseif ($_SESSION["roles_descripcion"] == 'Editor' ) {		
 			
-			echo "Necesitas tener rol Periodista para acceder a esta página";
+			echo "Necesitas tener rol Periodista o ser Goku para acceder a esta página";
 		}
 
 		
@@ -84,9 +84,9 @@ class WebControlador{
 			require_once 'view/footer.php';
 		}
 
-		elseif ($_SESSION["roles_descripcion"] == 'Editor' ) {		
+		elseif ($_SESSION["roles_descripcion"] == 'Periodista' ) {		
 			
-			echo "Necesitas tener rol Editor para acceder a esta página";
+			echo "Necesitas tener rol Editor o ser Goku para acceder a esta página";
 		}
 
 		
@@ -263,13 +263,9 @@ class WebControlador{
 			require_once 'view/contenedor/vista_admin.php';
 			require_once 'view/footer.php';
 		}
-
-		elseif ($_SESSION["username"] == 'Admin' ) {		
-			
-			echo "Necesitas ser Goku o el Administrador de la web para acceder";
-		}
 		
 		else {
+
 			header("Location: index.php?c=Web&a=Login_usuario");
 		}
 	}
@@ -284,14 +280,9 @@ class WebControlador{
 			require_once 'view/contenedor/vista_administracion_usuarios.php';
 			require_once 'view/footer.php';
 		}
-
-		elseif ($_SESSION["username"] == 'Admin' ) {		
-			
-			echo "Necesitas ser Goku o el Administrador de la web para acceder";
-		}
-
 		
-		else {
+		else { 
+
 			header("Location: index.php?c=Web&a=Login_usuario");
 		}
     }
@@ -343,12 +334,6 @@ class WebControlador{
 			require_once 'view/contenedor/vista_administracion_noticias.php';
 			require_once 'view/footer.php';
 		}
-
-		elseif ($_SESSION["username"] == 'Admin' ) {		
-			
-			echo "Necesitas ser Goku o el Administrador de la web para acceder";
-		}
-
 		
 		else {
 			header("Location: index.php?c=Web&a=Login_usuario");
