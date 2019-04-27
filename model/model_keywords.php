@@ -5,7 +5,6 @@ require_once 'model/conexion.php';
     class Keywords {
 
     private $pdo;
-
     public $keyword_id;
     public $keyword_texto;
   
@@ -21,27 +20,31 @@ require_once 'model/conexion.php';
 
     
     public function insertarKw (Keywords $data){
-        try {
-            
+        try {            
             $sql = "INSERT INTO keywords (keyword_texto) VALUES (?);";
-                    
+
             $this->pdo->prepare($sql)
                 ->execute(
                     array(
                         $data->keyword_texto
                     )
-                );
+                );     
             } catch (Exception $e) {
+               
                 echo "Error<br>";
                 die($e->getMessage());
             }
     }
-    
-    
-    
+
+    //función que obtiene el id del último kw insertado
+    public function UltimaKwInsertada (){
+        $lastInsertIdKeyword = $this->pdo->lastInsertId(); 
+        return $lastInsertIdKeyword;
+        
+    }
+
+
 
 }
-
-
 ?>
 

@@ -38,8 +38,6 @@ require_once 'model/model_keywords.php';
                     
                 $sql = "INSERT INTO noticias (usuario_periodista,usuario_editor,categoria_id,noticia_titulo,noticia_subtitulo,noticia_texto,ruta_imagen,fecha_creacion) 
                 VALUES (?,?,?,?,?,?,?,?)";
-
-                $this->pdo->beginTransaction();
                         
                 $this->pdo->prepare($sql)
                     ->execute(
@@ -55,16 +53,21 @@ require_once 'model/model_keywords.php';
                             
                         )
                     );
-                $this->pdo->commit();
-                
-                } catch (Exception $e) {
-
-                    $this->pdo->rollBack();
-    
+                  
+                } catch (Exception $e) {   
                     echo "Error creando noticia<br>";
                     die($e->getMessage());
                 }
         }
+
+        //función que obtiene el id de la última noticia insertada
+        public function GetUltimaNoticiaInsertada (){
+            $lastInsertIdNoticia = $this->pdo->lastInsertId(); 
+            return $lastInsertIdNoticia;            
+        }
+
+
+
 
         //Listado de noticias pendientes
 

@@ -3,7 +3,9 @@
 require_once 'model/model_usuario.php';		
 require_once 'model/model_keywords.php';
 require_once 'model/model_noticias.php';
-require_once 'model/modelo_categorias.php';				
+require_once 'model/modelo_categorias.php';
+require_once 'model/model_noticias_keywords.php';
+require_once 'model/conexion.php';				
 
 class WebControlador{
 	
@@ -11,6 +13,8 @@ class WebControlador{
 	private $noticia;
 	private $keyword;
 	private $categorias;
+	private $pdo;
+	private $noticias_keywords;
 
 	public function __CONSTRUCT(){
 		
@@ -18,6 +22,8 @@ class WebControlador{
 		$this->keyword= new Keywords();
 		$this->noticia= new Noticias();
 		$this->categorias= new Categorias();
+		$this->noticias_keywords= new Noticias_keywords();
+		$this->pdo = Conexion::Conectar(); 
 
     }
     
@@ -142,8 +148,10 @@ class WebControlador{
 
 	public function Guardar_noticia(){
 
+		
 		$notice= new Noticias();
-		$kw= new Keywords();				
+		$kw= new Keywords();	
+		$notice_kw = new Noticias_keywords();			
 		$fecha_actual = date("Y-m-d");
 
 		//para la carga de la imagen
@@ -160,12 +168,43 @@ class WebControlador{
 		$notice->noticia_subtitulo = $_REQUEST['noticia_subtitulo'];
 		$notice->noticia_texto = $_REQUEST['noticia_texto'];		
 		$notice->fecha_creacion = $fecha_actual;
-		$notice->ruta_imagen = $destino;		
-		$kw->keyword_texto = $_REQUEST['keyword_texto'];
+		$notice->ruta_imagen = $destino;	
 
+		
+		try {
 
-		$this->noticia->insertaNoticiaPeriodista($notice);		
-		$this->keyword->insertarKw($kw);
+		//iniciamos transacción. 
+			$this->pdo->beginTransaction();
+
+			//inserta las noticia
+			$this->noticia->insertaNoticiaPeriodista($notice);
+			
+			//obtiene id de última noticia insertada
+			$lastidnoticia = $this->noticia->GetUltimaNoticiaInsertada();
+
+			//inserta cada palabra clave en una fila
+			$palabrasclave =  explode(",",$_REQUEST["keyword_texto"]);	
+			foreach ($palabrasclave as $valor) {
+				$kw->keyword_texto = ltrim($valor);	
+				$this->keyword->insertarKw($kw);			
+
+				//obtiene id's de las últimas kw insertadas
+				$lastidkeyword=$this->keyword->UltimaKwInsertada();
+	
+				//inserta id's de noticias y keywords en noticias_keyword
+				$this->noticias_keywords->InsertaIdKwNoticaKeywords($lastidnoticia,$lastidkeyword);
+								
+			}
+
+			$this->pdo->commit();
+
+		} catch (Exception $e) {
+                
+			$this->pdo->rollBack();		
+
+			echo "Error en la inserción de la noticia<br>";
+			die($e->getMessage());
+		}
 
 		echo "Noticia añadida con éxito, <a href='index.php'>volver</a>";
 	}

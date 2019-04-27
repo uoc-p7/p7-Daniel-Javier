@@ -26,7 +26,7 @@
     </div>
 
     <div class="form-group">
-    <label>Keywords</label>
+    <label>Keywords (Introduce las palabras clave separadas por comas)</label>
         <input type="text" name="keyword_texto" value="<?php echo $kw->keyword_texto; ?>" class="form-control" placeholder="Introduce keywords"  />
     </div>
 
