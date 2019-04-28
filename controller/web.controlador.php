@@ -185,8 +185,8 @@ class WebControlador{
 			//inserta cada palabra clave en una fila
 			$palabrasclave =  explode(",",$_REQUEST["keyword_texto"]);	
 			foreach ($palabrasclave as $valor) {
-				$kw->keyword_texto = ltrim($valor);	
-				$this->keyword->insertarKw($kw);			
+				$kw->keyword_texto = ltrim(strtolower(($valor)));	
+				$this->keyword->insertarKw($kw);		
 
 				//obtiene id's de las últimas kw insertadas
 				$lastidkeyword=$this->keyword->UltimaKwInsertada();
