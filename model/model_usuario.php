@@ -13,6 +13,7 @@ class Usuario{
 	public $password;
 	public $email;
 	public $sesion;
+	public $roles_descripcion;
 	
 	public function __CONSTRUCT(){
 		try{
@@ -81,7 +82,7 @@ class Usuario{
 
 		try{
 			$result = array();
-			$sql = $this->pdo->prepare("SELECT * FROM usuarios");
+			$sql = $this->pdo->prepare("SELECT * FROM roles,usuarios WHERE roles.roles_id = usuarios.roles_id");
 			$sql->execute();
 			return $sql->fetchAll(PDO::FETCH_OBJ);
 		}catch(Exception $e){

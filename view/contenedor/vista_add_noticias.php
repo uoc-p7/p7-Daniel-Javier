@@ -1,6 +1,6 @@
 <h1>AÑADIR NOTICIAS</h1><br>
 
-<div class="row justify-content-center" >
+<div class="row justify-content-center">
 <form id="frm-noticia" action="?c=Web&a=Guardar_noticia" method="post" enctype="multipart/form-data" >
         
 <div class="form-group">

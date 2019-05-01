@@ -189,6 +189,7 @@ require_once 'model/model_keywords.php';
                             noticia_titulo = ?,
                             noticia_subtitulo = ?,
                             noticia_texto = ?,
+                            categoria_id = ?,
                             ruta_imagen = ?
                         WHERE noticia_id = ?";
     
@@ -198,6 +199,7 @@ require_once 'model/model_keywords.php';
                             $data->noticia_titulo,
                             $data->noticia_subtitulo,
                             $data->noticia_texto,
+                            $data->categoria_id,
                             $data->ruta_imagen,
                             $data->noticia_id
     

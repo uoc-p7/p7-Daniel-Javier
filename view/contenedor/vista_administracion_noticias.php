@@ -1,6 +1,6 @@
-<h1>ADMINISTRACION</h1><br><hr>
+<h1>ADMINISTRACIÓN</h1><br>
 
-<h4>GESTIÓN DE NOTICIAS</h4>
+<h4>GESTIÓN DE NOTICIAS</h4><br>
 
 <table class="table table-striped">
     <thead>
