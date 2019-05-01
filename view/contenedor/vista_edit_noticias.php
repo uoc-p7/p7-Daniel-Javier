@@ -1,5 +1,4 @@
-<h1>LISTADO DE NOTICIAS PENDIENTES</h1>
-
+<h1>LISTADO DE NOTICIAS PENDIENTES</h1><br>
 
 <table class="table table-striped">   
     <thead>

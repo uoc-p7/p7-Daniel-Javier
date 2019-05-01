@@ -28,12 +28,6 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href='?c=Web&a=Anadir_noticia'>Añadir noticia <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href='?c=Web&a=Editar_noticia'>Editar noticia <span class="sr-only">(current)</span></a>
-                    </li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="?c=Web&a=ListarTipoCategorias" id="navbardrop" data-toggle="dropdown">Categorías</a>
@@ -43,6 +37,12 @@
                         <?php endforeach; ?>                  
                     </div>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href='?c=Web&a=Anadir_noticia'>Añadir noticia <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href='?c=Web&a=Editar_noticia'>Editar noticia <span class="sr-only">(current)</span></a>
+                    </li>                    
                     <li class="nav-item">
                         <a class="nav-link" href = '?c=Web&a=Admin'>Administración<span class="sr-only">(current)</span></a>
                     </li>
