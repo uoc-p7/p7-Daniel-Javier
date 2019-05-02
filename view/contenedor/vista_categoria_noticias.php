@@ -1,4 +1,4 @@
-<h1>CATEGORÍA: </h1><BR>
+<h1>CATEGORÍA: <?php echo $_REQUEST['categoria_id']; ?></h1><BR>
 
 <div class="row justify-content-center" >
 <div style="width:60%;">

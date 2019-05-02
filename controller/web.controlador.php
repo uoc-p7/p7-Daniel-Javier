@@ -65,9 +65,9 @@ class WebControlador{
 			require_once 'view/footer.php';
 		}
 
-		elseif ($_SESSION["roles_descripcion"] == 'Editor' ) {		
+		elseif ($_SESSION["roles_descripcion"] != 'Periodista' ) {		
 			
-			echo "Necesitas tener rol Periodista o ser Goku para acceder a esta página";
+			echo "<center>Necesitas tener rol Periodista o ser Goku para acceder a esta página. <a href='index.php'>Volver</a><br><br><img src='images/no.webp' alt='no'></center>";
 		}
 
 		
@@ -90,9 +90,9 @@ class WebControlador{
 			require_once 'view/footer.php';
 		}
 
-		elseif ($_SESSION["roles_descripcion"] == 'Periodista' ) {		
+		elseif ($_SESSION["roles_descripcion"] != 'Editor' ) {		
 			
-			echo "Necesitas tener rol Editor o ser Goku para acceder a esta página";
+			echo "<center>Necesitas tener rol Editor o ser Goku para acceder a esta página. <a href='index.php'>Volver</a><br><br><img src='images/no.webp' alt='no'></center>";
 		}
 
 		
@@ -296,11 +296,15 @@ class WebControlador{
 
         $user = new Usuario();
 
-        if ($_SESSION["username"] == 'Admin' ) {		
+        if ($_SESSION["roles_descripcion"] == 'Administración' ) {		
 			
 			require_once 'view/header.php';
 			require_once 'view/contenedor/vista_admin.php';
 			require_once 'view/footer.php';
+
+		}elseif($_SESSION["roles_descripcion"] != 'Administración' ){
+
+			echo "<center>Necesitas tener rol Administrador o ser Goku para acceder a esta página.  <a href='index.php'>Volver</a><br><br><img src='images/no.webp' alt='no'></center>";
 		}
 		
 		else {
@@ -313,11 +317,15 @@ class WebControlador{
 
         $user = new Usuario();
 
-        if ($_SESSION["username"] == 'Admin' ) {		
+        if ($_SESSION["roles_descripcion"] == 'Administración' ) {		
 			
 			require_once 'view/header.php';
 			require_once 'view/contenedor/vista_administracion_usuarios.php';
 			require_once 'view/footer.php';
+
+		}elseif($_SESSION["roles_descripcion"] != 'Administración' ){
+
+			echo "<center>Necesitas tener rol Administrador o ser Goku para acceder a esta página. <a href='index.php'>Volver</a><br><br><img src='images/no.webp' alt='no'></center>";
 		}
 		
 		else { 
@@ -367,11 +375,15 @@ class WebControlador{
 	public function Administracion_not(){
 
 		$notice= new Noticias();
-        if ($_SESSION["username"] == 'Admin' ) {		
+        if ($_SESSION["roles_descripcion"] == 'Administración' ) {		
 			
 			require_once 'view/header.php';
 			require_once 'view/contenedor/vista_administracion_noticias.php';
 			require_once 'view/footer.php';
+			
+		}elseif($_SESSION["roles_descripcion"] != 'Administración' ){
+
+			echo "<center>Necesitas tener rol Administrador o ser Goku para acceder a esta página. <a href='index.php'>Volver</a><br><br><img src='images/no.webp' alt='no'></center>";
 		}
 		
 		else {

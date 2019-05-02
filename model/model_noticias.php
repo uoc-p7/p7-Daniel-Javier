@@ -18,8 +18,7 @@ require_once 'model/model_keywords.php';
         public $fecha_creacion;
         public $fecha_modificacion;
         public $fecha_publicacion; 
-        public $ruta_imagen;
-    
+        public $ruta_imagen;    
 
         public function __CONSTRUCT(){
             try{

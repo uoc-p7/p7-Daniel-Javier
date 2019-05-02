@@ -37,6 +37,7 @@
                         <?php endforeach; ?>                  
                     </div>
                     </li>
+                <?php if(isset($_SESSION['username'])){ ?>
                     <li class="nav-item">
                         <a class="nav-link" href='?c=Web&a=Anadir_noticia'>Añadir noticia <span class="sr-only">(current)</span></a>
                     </li>
@@ -46,6 +47,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href = '?c=Web&a=Admin'>Administración<span class="sr-only">(current)</span></a>
                     </li>
+                <?php } ?>
                 </ul>
                 <?php if(empty($_SESSION['username'])){ ?>
                     <button style="margin-right: 1%" type="button" onclick="location.href = '?c=Web&a=Login_usuario'" class="btn btn-success">Inicio sesión</button>
