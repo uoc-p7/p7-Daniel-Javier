@@ -40,6 +40,22 @@ class Categorias extends Noticias{
 		}
 	}
 
+	public function VerCategoriaID($categoria_id){
+
+		try 
+            {                
+                $sql = $this->pdo->prepare("SELECT categoria_texto FROM categorias WHERE categoria_id =".$categoria_id);
+                $sql->execute();    
+                return $sql->fetchAll(PDO::FETCH_OBJ);
+
+            } 
+            catch (Exception $e) 
+            {
+                die($e->getMessage());
+            }
+
+	}
+
 
 }
 

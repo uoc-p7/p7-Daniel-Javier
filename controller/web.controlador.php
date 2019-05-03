@@ -275,11 +275,10 @@ class WebControlador{
 	public function VerNoticiasCategorias(){
 
         $notcatsel = new Noticias();
-  
 
         
         if(isset($_REQUEST['categoria_id'])){
-            $notcatsel = $this->noticia->ObtenerNoticiaCategoria($_REQUEST['categoria_id']);           
+			$notcatsel = $this->noticia->ObtenerNoticiaCategoria($_REQUEST['categoria_id']);
             
         require_once 'view/header.php';
         require_once 'view/contenedor/vista_categoria_noticias.php';

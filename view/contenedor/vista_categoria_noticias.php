@@ -1,4 +1,8 @@
-<h1>CATEGORÍA: <?php echo $_REQUEST['categoria_id']; ?></h1><BR>
+<h1>
+  <?php foreach($this->categorias->VerCategoriaID($_REQUEST['categoria_id']) as $r):
+  echo ucwords($r->categoria_texto);
+  endforeach; ?>
+</h1><br>
 
 <div class="row justify-content-center" >
 <div style="width:60%;">
