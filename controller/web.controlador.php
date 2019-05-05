@@ -131,7 +131,7 @@ class WebControlador{
 
        	$this->usuario->Registrar($user);
         
-        echo "Usuario registrado con exito, <a href='index.php'>volver</a>";
+    
 	}
 
 

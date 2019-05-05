@@ -41,10 +41,13 @@ class Usuario{
                     $data->email
                 )
 			);
+		header("Location: index.php?c=Web&a=Login_usuario"); 
 		} catch (Exception $e) {
 
-			echo "Nombre de usuario duplicado, introduzca otro.<br>";
-			die($e->getMessage());
+			
+			$_SESSION['errorvalidacion'] ="Error en registro. <br>El nombre de usuario ya existe.";			
+			header("Location: index.php?c=Web&a=Registrar_usuario");
+			
 		}
 	}
 

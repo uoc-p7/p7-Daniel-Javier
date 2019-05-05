@@ -1,5 +1,12 @@
 <h1>REGISTRAR USUARIOS</h1>
 
+<?php
+    if(isset($_SESSION["errorvalidacion"])){
+        echo "<h4>".$_SESSION["errorvalidacion"]."</h4>";
+        session_unset();
+    }
+?>
+
 <div class="row justify-content-center" >
 <form action="?c=Web&a=Guardar_usuarios" method="post" enctype="multipart/form-data" >
     
