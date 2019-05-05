@@ -108,12 +108,14 @@ class WebControlador{
 		$user = new Usuario();
 		
 		$user->username = $_REQUEST['username'];
-		$user->password = $_REQUEST['password'];
+		$pwd = $_REQUEST['password'];
+		$password = sha1($pwd);
+		$user->password = $password;
 		
 		$this->usuario->Validar($user);
 
 	}
-
+	
 	public function Guardar_usuarios(){
 
 
@@ -122,7 +124,9 @@ class WebControlador{
         $user->username = $_REQUEST['username'];
         $user->roles_id = $_REQUEST['roles_id'];
         $user->nombre = $_REQUEST['nombre'];
-        $user->password = $_REQUEST['password'];
+		$pwd = $_REQUEST['password'];
+		$password = sha1($pwd);		
+		$user->password = $password ;
         $user->email = $_REQUEST['email'];
 
        	$this->usuario->Registrar($user);
