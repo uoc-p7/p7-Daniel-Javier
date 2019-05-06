@@ -7,6 +7,8 @@ require_once 'model/conexion.php';
     private $pdo;
     public $noticia_id;
     public $keyword_id;
+    public $keyword_texto;
+
 
   
 

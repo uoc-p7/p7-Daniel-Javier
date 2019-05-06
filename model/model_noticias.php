@@ -141,7 +141,7 @@ require_once 'model/model_keywords.php';
         {
             try 
             {                
-                $stm = $this->pdo->prepare("SELECT a.noticia_id, b.categoria_id as descripcion_categoria, a.noticia_titulo, a.noticia_subtitulo, a.noticia_texto, a.ruta_imagen 
+                $stm = $this->pdo->prepare("SELECT a.noticia_id, b.categoria_id as descripcion_categoria, a.usuario_periodista, a.usuario_editor, a.noticia_titulo, a.noticia_subtitulo, a.noticia_texto, a.ruta_imagen 
                 FROM noticias a 
                 inner join categorias b where a.categoria_id = b.categoria_id and a.categoria_id = '$categoria_id' ");
     
