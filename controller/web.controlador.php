@@ -278,8 +278,8 @@ class WebControlador{
 
 	public function VerNoticiasCategorias(){
 
-		$notcatsel = new Noticias();
-		
+        $notcatsel = new Noticias();
+
         
         if(isset($_REQUEST['categoria_id'])){
 			$notcatsel = $this->noticia->ObtenerNoticiaCategoria($_REQUEST['categoria_id']);

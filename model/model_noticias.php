@@ -18,8 +18,7 @@ require_once 'model/model_keywords.php';
         public $fecha_creacion;
         public $fecha_modificacion;
         public $fecha_publicacion; 
-        public $ruta_imagen;
-        public $keyword_texto;    
+        public $ruta_imagen;    
 
         public function __CONSTRUCT(){
             try{
@@ -142,16 +141,9 @@ require_once 'model/model_keywords.php';
         {
             try 
             {                
-                $stm = $this->pdo->prepare("SELECT a.noticia_id, b.categoria_id as descripcion_categoria, a.usuario_periodista, a.usuario_editor, a.noticia_titulo, a.noticia_subtitulo, a.noticia_texto, a.ruta_imagen, 
-                (select  GROUP_CONCAT(d.keyword_texto SEPARATOR ', ')) as keyword_texto
+                $stm = $this->pdo->prepare("SELECT a.noticia_id, b.categoria_id as descripcion_categoria, a.usuario_periodista, a.usuario_editor, a.noticia_titulo, a.noticia_subtitulo, a.noticia_texto, a.ruta_imagen 
                 FROM noticias a 
-                inner join categorias b
-                inner join noticias_keyword c
-                inner join keywords d
-                where a.categoria_id = b.categoria_id 
-                and a.noticia_id = c.noticia_id
-                and c.keyword_id = d.keyword_id
-                and a.categoria_id = '$categoria_id' ");
+                inner join categorias b where a.categoria_id = b.categoria_id and a.categoria_id = '$categoria_id' ");
     
                 $stm->execute();    
                 return $stm->fetchAll(PDO::FETCH_OBJ);
