@@ -14,6 +14,7 @@
     <h1 class="card-title"><?php echo $r->noticia_titulo; ?></h1><br>
     <h3 class="card-text"><?php echo $r->noticia_subtitulo; ?></h3><hr/>
     <p class="card-text"><?php echo $r->noticia_texto; ?></p>
+    <p class="card-text"><strong>Keywords: </strong><?php echo $r->keyword_texto; ?></p>
     <p class="card-text"><strong>Periodista:</strong> <?php echo $r->usuario_periodista; ?>&nbsp &nbsp &nbsp &nbsp<strong>Editor:</strong> <?php echo $r->usuario_editor; ?></p>
   </div>
 </div><br>
